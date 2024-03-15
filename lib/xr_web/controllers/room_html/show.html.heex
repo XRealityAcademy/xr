@@ -1,16 +1,16 @@
-<.header>
-  Room <%= @room.id %>
-  <:subtitle>This is a room record from your database.</:subtitle>
-  <:actions>
-    <.link href={~p"/rooms/#{@room}/edit"}>
-      <.button>Edit room</.button>
-    </.link>
-  </:actions>
-</.header>
-
-<.list>
-  <:item title="Name"><%= @room.name %></:item>
-  <:item title="Description"><%= @room.description %></:item>
-</.list>
-
-<.back navigate={~p"/rooms"}>Back to rooms</.back>
+<script>
+  window["room_vars"] = <%= raw Jason.encode!(%{room_id: @room.id}) %>
+</script>
+<body>
+  <style>
+    html, body {
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(ellipse at top, #201111, transparent),
+              radial-gradient(ellipse at bottom, #000021, transparent);
+    }
+  </style>
+</body>

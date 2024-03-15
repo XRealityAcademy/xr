@@ -17,14 +17,19 @@ window.addEventListener("phx:page-loading-stop", _info => topbar.hide());
 
 // connect if there are any LiveViews on the page
 liveSocket.connect();
-console.log("live socket",liveSocket);
-const room_id = window.location.pathname.match(/^\/rooms\/([^\/]+)$/)?.[1];
-console.log("What is",room_id);
-const channel = liveSocket.channel(`room:${room_id}`, {})
-console.log("Attempt to Join");
-channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
-  .receive("error", resp => { console.log("Unable to join", resp) })
+// liveSocket.connect();
+// console.log("live socket", liveSocket);
+// const room_id = window.location.pathname.match(/^\/rooms\/([^\/]+)$/)?.[1];
+// console.log("What is", room_id);
+// if (room_id) {
+//   const channel = liveSocket.channel(`room:${room_id}`, {})
+//   console.log("Attempt to Join");
+//   channel.join().receive("ok", resp => { console.log("Joined successfully", resp) }).receive("error", resp => { console.log("Unable to join", resp) })
+//   window["channel"] = channel;
+//   channel.on("shout", payload => {
+//     console.log("I received a 'shout'", payload)
+//   })
+// }
 
 // expose liveSocket on window for web console debug logs and latency simulation:
 // >> liveSocket.enableDebug()
@@ -32,4 +37,5 @@ channel.join()
 // >> liveSocket.disableLatencySim()
 // console.log("Hello world");
 window["liveSocket"] = liveSocket;
-window["channel"] = channel;
+
+

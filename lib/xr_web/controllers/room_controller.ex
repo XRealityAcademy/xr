@@ -28,7 +28,7 @@ defmodule XrWeb.RoomController do
 
   def show(conn, %{"id" => id}) do
     room = Rooms.get_room!(id)
-    render(conn, :show, room: room)
+    render(conn, :show, orchestrator: true, room: room)
   end
 
   def edit(conn, %{"id" => id}) do
